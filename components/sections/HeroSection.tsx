@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { defineQuery } from "next-sanity";
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
-// import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
-import { urlFor } from "@/sanity/lib/image";
+import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
 import { sanityFetch } from "@/sanity/lib/live";
+import { urlFor } from "@/sanity/lib/image";
+import { ProfileImage } from "@/components/ProfileImage";
+
 // import { ProfileImage } from "./ProfileImage";
 
 const HERO_QUERY = defineQuery(`*[_id == "singleton-profile"][0]{
@@ -50,13 +52,12 @@ export async function HeroSection() {
               {profile.headlineStaticText &&
               profile.headlineAnimatedWords &&
               profile.headlineAnimatedWords.length > 0 ? (
-                <p>Hello</p>
-                // <LayoutTextFlip
-                //   text={profile.headlineStaticText}
-                //   words={profile.headlineAnimatedWords}
-                //   duration={profile.headlineAnimationDuration || 3000}
-                //   className="text-xl @md/hero:text-2xl @lg/hero:text-3xl text-muted-foreground font-medium"
-                // />
+                <LayoutTextFlip
+                  text={profile.headlineStaticText}
+                  words={profile.headlineAnimatedWords}
+                  duration={profile.headlineAnimationDuration || 3000}
+                  className="text-xl @md/hero:text-2xl @lg/hero:text-3xl text-muted-foreground font-medium"
+                />
               ) : (
                 <p className="text-xl @md/hero:text-2xl @lg/hero:text-3xl text-muted-foreground font-medium">
                   {profile.headline}
@@ -134,16 +135,16 @@ export async function HeroSection() {
             </div>
 
             {/* Profile Image */}
-            {/* {profile.profileImage && (
-            //   <ProfileImage
-            //     imageUrl={urlFor(profile.profileImage)
-            //       .width(600)
-            //       .height(600)
-            //       .url()}
-            //     firstName={profile.firstName || ""}
-            //     lastName={profile.lastName || ""}
-            //   />
-            )} */}
+            {profile.profileImage && (
+              <ProfileImage
+                imageUrl={urlFor(profile.profileImage)
+                  .width(600)
+                  .height(600)
+                  .url()}
+                firstName={profile.firstName || ""}
+                lastName={profile.lastName || ""}
+              />
+            )}
           </div>
         </div>
       </div>

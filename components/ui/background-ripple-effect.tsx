@@ -1,5 +1,6 @@
 "use client";
-import React, { useMemo, useRef, useState } from "react";
+import type React from "react";
+import { useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export const BackgroundRippleEffect = ({
@@ -16,7 +17,7 @@ export const BackgroundRippleEffect = ({
     col: number;
   } | null>(null);
   const [rippleKey, setRippleKey] = useState(0);
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   return (
     <div
@@ -62,8 +63,8 @@ type DivGridProps = {
 };
 
 type CellStyle = React.CSSProperties & {
-  ["--delay"]?: string;
-  ["--duration"]?: string;
+  "--delay"?: string;
+  "--duration"?: string;
 };
 
 const DivGrid = ({
@@ -110,7 +111,8 @@ const DivGrid = ({
           : {};
 
         return (
-          <div
+          <button
+            type="button"
             key={idx}
             className={cn(
               "cell relative border-[0.5px] opacity-40 transition-opacity duration-150 will-change-transform hover:opacity-80 dark:shadow-[0px_0px_40px_1px_var(--cell-shadow-color)_inset]",
@@ -125,6 +127,7 @@ const DivGrid = ({
             onClick={
               interactive ? () => onCellClick?.(rowIdx, colIdx) : undefined
             }
+            aria-label={`Cell ${rowIdx}-${colIdx}`}
           />
         );
       })}
