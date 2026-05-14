@@ -7,7 +7,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar {...props}>
       <SidebarContent className="h-full w-full bg-white">
         <Suspense fallback={<div>Loading...</div>}>
-          {/* <ChatWrapper /> */}
+          { <ChatWrapper />}
         </Suspense>
       </SidebarContent>
       <SidebarRail />

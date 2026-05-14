@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.37.0",
+    "@google/genai": "^2.2.0",
     "@sanity/image-url": "^1.2.0",
     "@sanity/vision": "^4.22.0",
     "class-variance-authority": "^0.7.1",
